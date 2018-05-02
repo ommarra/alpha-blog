@@ -6,8 +6,16 @@ class ArticlesController < ApplicationController
   def create
     #render plain: params[:article].inspect -> it render the inputed information into a "ruby readable" form
     @article = Article.new(article_params)
-    @article.save
-    redirect_to articles_show(@article)
+   if  @article.save
+     flash[:notice] = "Article was created"
+    redirect_to article_path(@article)
+   else 
+     render 'new'
+   end
+  end
+  
+  def show 
+    @article = Article.find(params[:id])
   end
   
   private

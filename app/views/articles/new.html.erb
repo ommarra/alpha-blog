@@ -1,6 +1,13 @@
-<h1>
-   Create a new article
-</h1>
+<h1> Create a new article </h1>
+
+<% if @article.errors.any? %>
+<h2> errors are shown below </h2>
+<ul>
+  <li> <% @article.errors.full_messages.each do |msg| %> </li>li
+    <%= msg %>
+  <% end %>
+</ul>
+<% end %>
 
 <%= form_for @article do |x| %>
 <p>
